@@ -24,7 +24,7 @@ export default function SignIn() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-r from-blue-500 to-teal-500">
+    <div className="flex flex-col items-center justify-center h-screen bg-gradient-to-r from-blue-500 to-teal-500">
       <div className="bg-white p-8 rounded-xl shadow-lg w-full sm:w-96">
         <h1 className="text-3xl font-semibold text-center text-gray-800 mb-6">
           Welcome to the Quiz App!
