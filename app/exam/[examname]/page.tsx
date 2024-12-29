@@ -1,30 +1,27 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 
-const ExamPage = ({ params }: { params: { examname: string } }) => {
+const ExamPage = ({ params }: { params: Promise<{ examname: string }> }) => {
   const [examName, setExamName] = useState<string | null>(null);
 
-  // Using async/await inside useEffect
   useEffect(() => {
-    const fetchExamName = async () => {
-      if (params) {
-        const unwrappedParams = await params;
-        setExamName(unwrappedParams.examname);
-      }
+    const fetchData = async () => {
+      const resolvedParams = await params;
+      setExamName(resolvedParams.examname);
     };
 
-    fetchExamName();
+    fetchData();
   }, [params]);
-
-  if (!examName) {
-    return <div>Loading...</div>;
-  }
 
   return (
     <div>
-      <h1>Exam: {examName}</h1>
+      {examName ? (
+        <h1>Exam: {examName}</h1>
+      ) : (
+        <p>Loading exam details...</p>
+      )}
     </div>
   );
 };
