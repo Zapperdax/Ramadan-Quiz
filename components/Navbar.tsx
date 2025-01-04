@@ -7,7 +7,7 @@ const Navbar = () => {
   const { data: session } = useSession();
 
   return (
-    <nav className="flex justify-between items-center p-4 bg-blue-600 text-white shadow-lg">
+    <nav className="flex justify-between items-center p-4 bg-gradient-to-r from-green-400 to-emerald-600 text-white shadow-lg">
       <div className="flex items-center space-x-4">
         <Link href="/" className="text-base sm:text-2xl md:text-3xl font-bold">
           Ramadan Family Exams
@@ -28,7 +28,7 @@ const Navbar = () => {
             <Button
               label="Logout"
               onClick={() => signOut({ callbackUrl: "/login" })}
-              className="py-2 px-4 bg-blue-600 text-white hover:bg-blue-500 transition duration-200"
+              className="py-2 px-4  text-white hover:bg-green-400 transition duration-200 rounded-lg"
             />
           </div>
         ) : null}

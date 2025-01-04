@@ -1,6 +1,6 @@
 "use client";
 
-import { useRouter } from "next/router";
+import ExamQuestion from "@/components/ExamQuestion";
 import { useEffect, useState } from "react";
 
 const ExamPage = ({ params }: { params: Promise<{ examname: string }> }) => {
@@ -15,13 +15,13 @@ const ExamPage = ({ params }: { params: Promise<{ examname: string }> }) => {
     fetchData();
   }, [params]);
 
+  if(examName === null) {
+    return <p>Loading...</p>;
+  }
+
   return (
-    <div>
-      {examName ? (
-        <h1>Exam: {examName}</h1>
-      ) : (
-        <p>Loading exam details...</p>
-      )}
+    <div className="bg-gray-100">
+      <ExamQuestion examName={examName} />
     </div>
   );
 };

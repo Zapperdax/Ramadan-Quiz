@@ -19,30 +19,44 @@ export default function Home() {
     {
       label: "English Mastery Exam",
       description: "Challenge your language skills and uncover your mastery of English communication.",
+      startDate: 1735930800,
+      endDate: 1736017199
     },
     {
       label: "Mathematics Genius Test",
       description: "Prove your prowess in solving problems and navigating the world of numbers.",
+      startDate: 1736017200,
+      endDate:1736017200
     },
     {
       label: "Science Explorer Quiz",
       description: "Dive into the wonders of science and showcase your curiosity about the natural world.",
+      startDate: 1736017200,
+      endDate:1736017200
     },
     {
       label: "History Legends Challenge",
       description: "Travel through time and reveal your knowledge of historical events and figures.",
+      startDate: 1736017200,
+      endDate: 1736017200
     },
     {
       label: "Geography Adventurer Test",
       description: "Embark on a global journey and display your understanding of Earth's landscapes and cultures.",
+      startDate: 1736017200,
+      endDate: 1736017200
     },
     {
       label: "Urdu Proficiency Assessment",
       description: "Celebrate the beauty of Urdu and demonstrate your fluency and expertise.",
+      startDate: 1736017200,
+      endDate:1736017200
     },
     {
       label: "Computer Science Innovators Exam",
       description: "Unleash your coding skills and tech knowledge to conquer the digital frontier.",
+      startDate: 1736017200,
+      endDate: 1736017200
     },
   ];
   
@@ -68,7 +82,7 @@ export default function Home() {
               </p>
               {ExamNames.map((exam) => {
                 return (
-                  <ExamCard key={exam.label} label={exam.label} description={exam.description} onClick={() => handleExamPage(exam.label)} />
+                  <ExamCard key={exam.label} label={exam.label} description={exam.description} startDate={exam.startDate} endDate={exam.endDate} onClick={() => handleExamPage(exam.label)} />
                 );
               })}
             </>

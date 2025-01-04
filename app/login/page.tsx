@@ -24,19 +24,26 @@ export default function SignIn() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen bg-gradient-to-r from-blue-500 to-teal-500">
-      <div className="bg-white p-8 rounded-xl shadow-lg w-full sm:w-96">
-        <h1 className="text-3xl font-semibold text-center text-gray-800 mb-6">
+    <div className="flex flex-col items-center justify-center h-screen bg-gradient-to-r from-green-400 to-teal-500">
+      <div className="flex flex-col items-center justify-center w-full p-8 space-y-8">
+        {/* Header Section */}
+        <h1 className="text-5xl font-extrabold text-white text-center">
           Welcome to the Quiz App!
         </h1>
-        <p className="text-center text-gray-600 mb-6">
-          Please sign in to start the quiz.
+        <p className="text-xl text-white text-center">
+          Please sign in to start the quiz. It only takes a moment!
         </p>
+
+        {/* Sign-in Button */}
         <Button
           onClick={handleSignIn}
           label="Sign In with Google"
+          className="bg-blue-500 text-white py-3 px-6 rounded-full text-lg font-semibold shadow-lg hover:bg-blue-600 transition duration-200 ease-in-out"
         />
       </div>
+
+      {/* Background Image */}
+      <div className="absolute inset-0 bg-cover bg-center bg-opacity-50"></div>
     </div>
   );
 }
