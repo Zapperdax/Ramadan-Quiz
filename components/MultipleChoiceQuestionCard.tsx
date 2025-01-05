@@ -1,7 +1,10 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
+import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
 
 type Question = {
+  id: number;
   question: string;
   options: string[];
   correctOption: string;
@@ -14,6 +17,27 @@ type multipleChoiceQuestionCardProps = {
 const MultipleChoiceQuestionCard: React.FC<multipleChoiceQuestionCardProps> = ({
   questions,
 }) => {
+  const router = useRouter();
+  const [selectedOptions, setSelectedOptions] = useState<{[key:number]: string}>({});
+  const handleSelectedOption = (questionIndex: number, selectedOption:string) => {
+    setSelectedOptions((prevState)=> ({
+      ...prevState,
+      [questionIndex]: selectedOption,
+    }))
+  }
+
+  const handleSubmit = () => {
+    let marks = 0;
+    if(Object.keys(selectedOptions).length !== questions.length){
+      toast.error("Please select all options!", { position: "top-right", autoClose: 3000 });
+      return;
+    }
+    questions.forEach((question, i)=> {
+      if(question.correctOption === selectedOptions[i]) marks++;
+    })
+    toast.success(`You have successfully secured ${marks} marks!`, { position: "top-right", autoClose: 10000 });
+    router.push('/');
+  }
   return (
     <div className="my-4 text-center">
     <div className="m-6 max-w-3xl mx-auto text-left">
@@ -31,7 +55,8 @@ const MultipleChoiceQuestionCard: React.FC<multipleChoiceQuestionCardProps> = ({
                 className="mb-3 rounded-full border border-emerald-400 shadow-sm hover:shadow-md transition-all"
               >
                 <button
-                  className="w-full px-6 py-3 text-left bg-white text-black rounded-full hover:bg-emerald-100 transition duration-300"
+                onClick={()=> handleSelectedOption(question.id, option)}
+                  className={`${selectedOptions[question.id] === option ? "bg-emerald-100": ""} w-full px-6 py-3 text-left bg-white text-black rounded-full hover:bg-emerald-100 transition duration-300`}
                   title={option}
                   name={option}
                 >
@@ -44,6 +69,7 @@ const MultipleChoiceQuestionCard: React.FC<multipleChoiceQuestionCardProps> = ({
       ))}
     </div>
           <button
+          onClick={handleSubmit}
           className="bg-gradient-to-r from-green-400 to-emerald-600 text-white py-4 px-6 rounded-lg shadow-lg w-1/2"
           title="submit"
           name="submit"

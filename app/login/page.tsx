@@ -1,5 +1,3 @@
-// app/auth/signin/page.tsx
-
 "use client";
 
 import { signIn, useSession } from "next-auth/react";
@@ -41,9 +39,6 @@ export default function SignIn() {
           className="bg-blue-500 text-white py-3 px-6 rounded-full text-lg font-semibold shadow-lg hover:bg-blue-600 transition duration-200 ease-in-out"
         />
       </div>
-
-      {/* Background Image */}
-      <div className="absolute inset-0 bg-cover bg-center bg-opacity-50"></div>
     </div>
   );
 }
