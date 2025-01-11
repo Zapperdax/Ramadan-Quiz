@@ -13,13 +13,14 @@ type Question = {
 
 type multipleChoiceQuestionCardProps = {
   questions: Question[];
+  examName: string;
 };
 
 const MultipleChoiceQuestionCard: React.FC<multipleChoiceQuestionCardProps> = ({
-  questions,
+  questions, examName
 }) => {
   const { data: session } = useSession();
-  const userId = session?.user?.id;
+  const userId = session?.user?.id || "";
   const router = useRouter();
   const [selectedOptions, setSelectedOptions] = useState<{
     [key: number]: string;
@@ -34,7 +35,33 @@ const MultipleChoiceQuestionCard: React.FC<multipleChoiceQuestionCardProps> = ({
     }));
   };
 
-  const handleSubmit = () => {
+  const handleUpdateMarks = async (
+    userId: string,
+    subject: string,
+    marks: number,
+    status: number
+  ) => {
+    try {
+      const response = await fetch("/api/user/update", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ userId, subject, marks, status }),
+      });
+      if (!response.ok) {
+        const errorData = await response.json();
+        console.error("Error updating user:", errorData.error);
+        return;
+      }
+      const data = await response.json();
+      console.log("User updated successfully:", data);
+    } catch (error) {
+      console.error("Error calling API", error);
+    }
+  };
+
+  const handleSubmit = async () => {
     let marks = 0;
     if (Object.keys(selectedOptions).length !== questions.length) {
       toast.error("Please select all options!", {
@@ -50,6 +77,7 @@ const MultipleChoiceQuestionCard: React.FC<multipleChoiceQuestionCardProps> = ({
       position: "top-right",
       autoClose: 10000,
     });
+    await handleUpdateMarks(userId, examName, marks, 1);
     router.push("/");
   };
 
@@ -72,8 +100,10 @@ const MultipleChoiceQuestionCard: React.FC<multipleChoiceQuestionCardProps> = ({
                   <button
                     onClick={() => handleSelectedOption(question.id, option)}
                     className={`w-full px-6 py-3 text-left text-black rounded-full hover:bg-emerald-100 transition duration-300 ${
-                      selectedOptions[question.id] === option ? "bg-emerald-100" : ""
-                    }`}                    
+                      selectedOptions[question.id] === option
+                        ? "bg-emerald-100"
+                        : ""
+                    }`}
                     title={option}
                     name={option}
                   >

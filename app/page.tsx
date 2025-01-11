@@ -1,12 +1,16 @@
 "use client"; // Ensure this is at the top
 
 import { useSession } from "next-auth/react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import ExamCard from "@/components/ExamCards";
 
 export default function Home() {
   const { data: session } = useSession();
+  const userId = session?.user?.id;
+  const [user, setUser] = useState<any>(null);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [nameOfExam, setNameOfExam] = useState<string>("");
   const router = useRouter();
 
   useEffect(() => {
@@ -15,12 +19,51 @@ export default function Home() {
     }
   }, [session, router]);
 
+  useEffect(() => {
+    if (!userId) return;
+
+    // Fetch the user data from the API
+    const fetchUser = async () => {
+      try {
+        const response = await fetch(`/api/user/${userId}`, {
+          method: "POST", // We're using POST instead of GET
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ userId }), // Send userId in the request body
+        });
+    
+        if (!response.ok) {
+          throw new Error("Failed to fetch user");
+        }
+    
+        const userData = await response.json();
+        setUser(userData); 
+        setLoading(false); 
+      } catch (error: any) {
+        console.error("Error fetching user:", error);
+        setLoading(false); 
+      }
+    };
+
+    if(session) {
+      fetchUser();
+    }
+  }, [userId, session]);
+
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-20 bg-white">
+        <div className="animate-spin w-12 h-12 text-gray-600 border-4 border-gray-400"></div>
+      </div>
+    );
+  }
   const ExamNames = [
     {
       label: "English Mastery Exam",
       description: "Challenge your language skills and uncover your mastery of English communication.",
-      startDate: 1735930800,
-      endDate: 1736017199
+      startDate: 1736604712,
+      endDate: 1736618712
     },
     {
       label: "Mathematics Genius Test",
@@ -82,7 +125,7 @@ export default function Home() {
               </p>
               {ExamNames.map((exam) => {
                 return (
-                  <ExamCard key={exam.label} label={exam.label} description={exam.description} startDate={exam.startDate} endDate={exam.endDate} onClick={() => handleExamPage(exam.label)} />
+                  <ExamCard key={exam.label} user={user} label={exam.label} description={exam.description} startDate={exam.startDate} endDate={exam.endDate} onClick={() => handleExamPage(exam.label)} />
                 );
               })}
             </>

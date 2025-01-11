@@ -2,7 +2,7 @@
 import NextAuth, { DefaultSession, Session } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import mongoose from "mongoose";
-import User from "@/models/User"; // Adjust the path as per your project structure
+import User from "@/models/User";
 import { JWT } from "next-auth/jwt";
 
 // Extend the Session interface

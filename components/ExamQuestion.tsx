@@ -18,19 +18,19 @@ const ExamQuestion: React.FC<examQuestionProps> = ({ examName }) => {
     <div className="flex flex-col justify-center items-center mx-4">
         {examName}
       {examName === "english-mastery-exam" ? (
-        <MultipleChoiceQuestionCard questions={englishQuestions} />
+        <MultipleChoiceQuestionCard questions={englishQuestions} examName={examName} />
       ) : examName === "computer-science-innovators-exam" ? (
-        <MultipleChoiceQuestionCard questions={computerQuestions} />
+        <MultipleChoiceQuestionCard questions={computerQuestions} examName={examName} />
       ) : examName === "geography-adventurer-test" ? (
-        <MultipleChoiceQuestionCard questions={geographyQuestions} />
+        <MultipleChoiceQuestionCard questions={geographyQuestions} examName={examName} />
       ) : examName === "history-legends-challenge" ? (
-        <MultipleChoiceQuestionCard questions={historyQuestions} />
+        <MultipleChoiceQuestionCard questions={historyQuestions} examName={examName} />
       ) : examName === "mathematics-genius-test" ? (
-        <MultipleChoiceQuestionCard questions={mathQuestions} />
+        <MultipleChoiceQuestionCard questions={mathQuestions} examName={examName} />
       ) : examName === "science-explorer-quiz" ? (
-        <MultipleChoiceQuestionCard questions={scienceQuestions} />
+        <MultipleChoiceQuestionCard questions={scienceQuestions} examName={examName} />
       ) : examName === "urdu-proficiency-assessment" ? (
-        <MultipleChoiceQuestionCard questions={urduQuestions} />
+        <MultipleChoiceQuestionCard questions={urduQuestions} examName={examName} />
       ) : null}
     </div>
   );
