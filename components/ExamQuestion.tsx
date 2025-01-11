@@ -8,6 +8,7 @@ import historyQuestions from "@/questions/historyQuestions";
 import mathQuestions from "@/questions/mathQuestions";
 import scienceQuestions from "@/questions/scienceQuestion";
 import urduQuestions from "@/questions/urduQuestions";
+import { englishExam, computerExam, geographyExam, historyExam, mathExam, scienceExam, urduExam } from "@/questions/ExamNames";
 
 type examQuestionProps = {
   examName: string;
@@ -17,19 +18,19 @@ const ExamQuestion: React.FC<examQuestionProps> = ({ examName }) => {
   return (
     <div className="flex flex-col justify-center items-center mx-4">
         {examName}
-      {examName === "english-mastery-exam" ? (
+      {examName === englishExam ? (
         <MultipleChoiceQuestionCard questions={englishQuestions} examName={examName} />
-      ) : examName === "computer-science-innovators-exam" ? (
+      ) : examName === computerExam ? (
         <MultipleChoiceQuestionCard questions={computerQuestions} examName={examName} />
-      ) : examName === "geography-adventurer-test" ? (
+      ) : examName === geographyExam ? (
         <MultipleChoiceQuestionCard questions={geographyQuestions} examName={examName} />
-      ) : examName === "history-legends-challenge" ? (
+      ) : examName === historyExam ? (
         <MultipleChoiceQuestionCard questions={historyQuestions} examName={examName} />
-      ) : examName === "mathematics-genius-test" ? (
+      ) : examName === mathExam ? (
         <MultipleChoiceQuestionCard questions={mathQuestions} examName={examName} />
-      ) : examName === "science-explorer-quiz" ? (
+      ) : examName === scienceExam ? (
         <MultipleChoiceQuestionCard questions={scienceQuestions} examName={examName} />
-      ) : examName === "urdu-proficiency-assessment" ? (
+      ) : examName === urduExam ? (
         <MultipleChoiceQuestionCard questions={urduQuestions} examName={examName} />
       ) : null}
     </div>

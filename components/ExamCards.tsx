@@ -1,6 +1,5 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { useSession } from "next-auth/react";
 type ExamCardProps = {
   user: any;
   label: string;
@@ -18,7 +17,7 @@ const epochToDate = (epochTime: number) => {
 
 const showExamCard = (startDate: number, endDate: number, user: any, label: string) => {
   label = label.replace(/\s+/g, "-").toLowerCase();
-  if (Date.now() >= startDate * 1000 && Date.now() <= endDate * 1000 && user.marks?.[label].status === 0) {
+  if (Date.now() >= startDate * 1000 && Date.now() <= endDate * 1000 && user?.marks?.[label].status === 0) {
     return true;
   } else {
     return false;

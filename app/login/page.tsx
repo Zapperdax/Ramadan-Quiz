@@ -1,26 +1,11 @@
 "use client";
 
-import { signIn, useSession } from "next-auth/react";
-import { useEffect } from "react";
-import { useRouter } from "next/navigation"; // useRouter hook
 import Button from "@/components/Button";
+import { useLogin } from "@/hooks/loginPageHooks";
+import { handleSignIn } from "@/services/loginPageService";
 
 export default function SignIn() {
-  const { data: session } = useSession();
-  const router = useRouter();
-
-  useEffect(() => {
-    if (session) {
-      router.push("/");
-    }
-  }, [session, router]);
-
-  const handleSignIn = () => {
-    signIn("google", {
-      callbackUrl: "/", // Redirect to home after login
-    });
-  };
-
+  useLogin();
   return (
     <div className="flex flex-col items-center justify-center h-screen bg-gradient-to-r from-green-400 to-teal-500">
       <div className="flex flex-col items-center justify-center w-full p-8 space-y-8">

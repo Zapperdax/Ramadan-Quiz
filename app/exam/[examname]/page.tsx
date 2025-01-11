@@ -1,22 +1,14 @@
 "use client";
 
 import ExamQuestion from "@/components/ExamQuestion";
-import { useEffect, useState } from "react";
+import LoadingSpinner from "@/components/LoadingSpinner";
+import { useExam } from "@/hooks/examPageHooks";
 
 const ExamPage = ({ params }: { params: Promise<{ examname: string }> }) => {
-  const [examName, setExamName] = useState<string | null>(null);
+  const { examName } = useExam(params);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const resolvedParams = await params;
-      setExamName(resolvedParams.examname);
-    };
-
-    fetchData();
-  }, [params]);
-
-  if(examName === null) {
-    return <p>Loading...</p>;
+  if (examName === null) {
+    return <LoadingSpinner />;
   }
 
   return (
