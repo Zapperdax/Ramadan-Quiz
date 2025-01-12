@@ -7,7 +7,7 @@ import { handleSignIn } from "@/services/loginPageService";
 export default function SignIn() {
   useLogin();
   return (
-    <div className="flex flex-col items-center justify-center h-screen bg-gradient-to-r from-green-400 to-teal-500">
+    <div className="flex flex-col items-center justify-center h-screen bg-gradient-to-r from-green-400 to-green-500">
       <div className="flex flex-col items-center justify-center w-full p-8 space-y-8">
         {/* Header Section */}
         <h1 className="text-5xl font-extrabold text-white text-center">
@@ -21,7 +21,7 @@ export default function SignIn() {
         <Button
           onClick={handleSignIn}
           label="Sign In with Google"
-          className="bg-blue-500 text-white py-3 px-6 rounded-full text-lg font-semibold shadow-lg hover:bg-blue-600 transition duration-200 ease-in-out"
+          className="bg-emerald-600 text-white py-3 px-6 rounded-full text-lg font-semibold shadow-lg hover:bg-green-600 transition duration-200 ease-in-out"
         />
       </div>
     </div>

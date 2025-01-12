@@ -1,5 +1,7 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React from "react";
+import { epochToDate, showExamCard } from "@/services/examCardsService";
+
 type ExamCardProps = {
   user: any;
   label: string;
@@ -7,21 +9,6 @@ type ExamCardProps = {
   startDate: number;
   endDate: number;
   onClick?: () => void;
-};
-
-const epochToDate = (epochTime: number) => {
-  const epochMilliseconds = epochTime * 1000; // Convert to milliseconds
-  const date = new Date(epochMilliseconds);
-  return date.toLocaleString();
-};
-
-const showExamCard = (startDate: number, endDate: number, user: any, label: string) => {
-  label = label.replace(/\s+/g, "-").toLowerCase();
-  if (Date.now() >= startDate * 1000 && Date.now() <= endDate * 1000 && user?.marks?.[label].status === 0) {
-    return true;
-  } else {
-    return false;
-  }
 };
 
 const ExamCard: React.FC<ExamCardProps> = ({
@@ -54,7 +41,7 @@ const ExamCard: React.FC<ExamCardProps> = ({
           className={`absolute -inset-1 ${
             !showExam
               ? "bg-gray-400"
-              : "bg-gradient-to-r from-purple-600 to-pink-600"
+              : "bg-gradient-to-r from-green-600 to-emerald-600"
           } rounded-lg blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200`}
         ></div>
         <div
@@ -66,7 +53,7 @@ const ExamCard: React.FC<ExamCardProps> = ({
             className={`text-base sm:text-lg font-semibold ${
               !showExam
                 ? "text-gray-500"
-                : "text-purple-600 hover:text-purple-800 transition-colors"
+                : "text-emerald-600 hover:text-emerald-800 transition-colors"
             }`}
           >
             {label}

@@ -12,7 +12,7 @@ const ExamPage = ({ params }: { params: Promise<{ examname: string }> }) => {
   }
 
   return (
-    <div className="bg-gray-100">
+    <div>
       <ExamQuestion examName={examName} />
     </div>
   );

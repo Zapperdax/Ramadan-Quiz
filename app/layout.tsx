@@ -5,6 +5,7 @@ import Navbar from "@/components/Navbar";
 import ClientWrapper from "@/components/ClientWrapper";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Footer from "@/components/Footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -33,11 +34,12 @@ export default function RootLayout({
           <meta name="viewport" content="width=device-width, initial-scale=1" />
         </head>
         <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+          className={`${geistSans.variable} ${geistMono.variable} antialiased bg-emerald-50`}
         >
           <Navbar />
           <ToastContainer />
           {children}
+          <Footer />
         </body>
       </html>
     </ClientWrapper>
