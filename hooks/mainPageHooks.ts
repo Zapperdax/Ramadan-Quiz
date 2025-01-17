@@ -31,7 +31,8 @@ export const useUser = () => {
         });
 
         if (!response.ok) {
-          throw new Error("Failed to fetch user");
+          router.push("login");
+          // throw new Error("Failed to fetch user");
         }
 
         const userData = await response.json();
