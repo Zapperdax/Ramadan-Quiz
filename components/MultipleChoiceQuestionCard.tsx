@@ -1,6 +1,5 @@
 "use client";
 import React, { useState } from "react";
-import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { handleSubmit, handleSelectedOption } from "@/services/multipleChoiceQuestionCardService";
