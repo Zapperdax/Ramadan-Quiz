@@ -7,6 +7,7 @@ export const useUser = () => {
   const userId = session?.user?.id;
   const [user, setUser] = useState<any>(null);
   const [loading, setLoading] = useState<boolean>(true);
+  const [subjects, setSubjects] = useState<string[]>([]);
   const router = useRouter();
 
   useEffect(() => {
@@ -37,6 +38,7 @@ export const useUser = () => {
 
         const userData = await response.json();
         setUser(userData);
+        setSubjects(Object.keys(userData.marks));
         setLoading(false);
       } catch (error: any) {
         console.error("Error fetching user:", error);
@@ -49,5 +51,5 @@ export const useUser = () => {
       fetchUser();
     }
   }, [session]);
-  return {user, session, loading}
+  return {user, session, loading, subjects}
 };
