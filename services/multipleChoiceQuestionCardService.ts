@@ -2,15 +2,17 @@ import { toast } from "react-toastify";
 import { useState } from "react";
 
 export const handleSelectedOption = (
-    questionIndex: number,
-    selectedOption: string,
-    setSelectedOptions: React.Dispatch<React.SetStateAction<{[key: number]: string}>>
-  ) => {
-    setSelectedOptions((prevState) => ({
-      ...prevState,
-      [questionIndex]: selectedOption,
-    }));
-  };
+  questionIndex: number,
+  selectedOption: string,
+  setSelectedOptions: React.Dispatch<
+    React.SetStateAction<{ [key: number]: string }>
+  >
+) => {
+  setSelectedOptions((prevState) => ({
+    ...prevState,
+    [questionIndex]: selectedOption,
+  }));
+};
 
 const handleUpdateMarks = async (
   userId: string,
@@ -31,8 +33,6 @@ const handleUpdateMarks = async (
       console.error("Error updating user:", errorData.error);
       return;
     }
-    const data = await response.json();
-    console.log("User updated successfully:", data);
   } catch (error) {
     console.error("Error calling API", error);
   }
@@ -56,7 +56,7 @@ export const handleSubmit = async (
   questions.forEach((question: { correctOption: string }, i: number) => {
     if (question.correctOption === selectedOptions[i]) marks++;
   });
-  toast.success(`You have successfully secured ${marks} marks!`, {
+  toast.success(`You have successfully submitted your exam!`, {
     position: "top-right",
     autoClose: 10000,
   });
