@@ -18,7 +18,6 @@ const connectToDB = async () => {
   const MONGODB_URI = process.env.MONGODB_URI!;
   if (!mongoose.connection.readyState) {
     await mongoose.connect(MONGODB_URI);
-    console.log("Connected to MongoDB");
   }
 };
 

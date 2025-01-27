@@ -22,8 +22,6 @@ const Navbar = () => {
     router.push("/all-results");
   };
 
-  console.log(pathname);
-
   return (
     <nav className="bg-gradient-to-r from-green-400 to-emerald-600 text-white shadow-lg">
       <div className="flex justify-between items-center p-4">
