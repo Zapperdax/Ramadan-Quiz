@@ -70,7 +70,6 @@ export const useUser = () => {
   const calculateMaxMarks = (marks: any) => {
     let total = 0;
     Object.keys(marks).forEach((mark) => {
-      console.log(marks);
       let subjectMarks = marks[mark];
       if (subjectMarks.status === 1) {
         total += subjectMarks.maxMarks;
