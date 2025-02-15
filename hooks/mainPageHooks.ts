@@ -9,6 +9,7 @@ export const useUser = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [subjects, setSubjects] = useState<string[]>([]);
   const [totalMarks, setTotalMarks] = useState<number>(0);
+  const [maxMarks, setMaxMarks] = useState<number>(0);
   const router = useRouter();
 
   useEffect(() => {
@@ -41,6 +42,7 @@ export const useUser = () => {
         setUser(userData);
         setSubjects(Object.keys(userData.marks));
         calculateTotalMarks(userData.marks);
+        calculateMaxMarks(userData.marks);
         setLoading(false);
       } catch (error: any) {
         console.error("Error fetching user:", error);
@@ -64,5 +66,17 @@ export const useUser = () => {
     });
     setTotalMarks(total);
   };
-  return { user, session, loading, subjects, totalMarks };
+
+  const calculateMaxMarks = (marks: any) => {
+    let total = 0;
+    Object.keys(marks).forEach((mark) => {
+      console.log(marks);
+      let subjectMarks = marks[mark];
+      if (subjectMarks.status === 1) {
+        total += subjectMarks.maxMarks;
+      }
+    });
+    setMaxMarks(total);
+  };
+  return { user, session, loading, subjects, totalMarks, maxMarks };
 };

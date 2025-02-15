@@ -8,7 +8,17 @@ import historyQuestions from "@/questions/historyQuestions";
 import mathQuestions from "@/questions/mathQuestions";
 import scienceQuestions from "@/questions/scienceQuestion";
 import urduQuestions from "@/questions/urduQuestions";
-import { englishExam, computerExam, geographyExam, historyExam, mathExam, scienceExam, urduExam } from "@/questions/ExamNames";
+import practiceQuestions from "@/questions/practiceQuestions";
+import {
+  practiceExam,
+  englishExam,
+  computerExam,
+  geographyExam,
+  historyExam,
+  mathExam,
+  scienceExam,
+  urduExam,
+} from "@/questions/ExamNames";
 
 type examQuestionProps = {
   examName: string;
@@ -17,21 +27,46 @@ type examQuestionProps = {
 const ExamQuestion: React.FC<examQuestionProps> = ({ examName }) => {
   return (
     <div className="flex flex-col justify-center items-center mx-4">
-        {examName}
-      {examName === englishExam ? (
-        <MultipleChoiceQuestionCard questions={englishQuestions} examName={examName} />
+      {examName === practiceExam ? (
+        <MultipleChoiceQuestionCard
+          questions={practiceQuestions}
+          examName={examName}
+        />
+      ) : examName === englishExam ? (
+        <MultipleChoiceQuestionCard
+          questions={englishQuestions}
+          examName={examName}
+        />
       ) : examName === computerExam ? (
-        <MultipleChoiceQuestionCard questions={computerQuestions} examName={examName} />
+        <MultipleChoiceQuestionCard
+          questions={computerQuestions}
+          examName={examName}
+        />
       ) : examName === geographyExam ? (
-        <MultipleChoiceQuestionCard questions={geographyQuestions} examName={examName} />
+        <MultipleChoiceQuestionCard
+          questions={geographyQuestions}
+          examName={examName}
+        />
       ) : examName === historyExam ? (
-        <MultipleChoiceQuestionCard questions={historyQuestions} examName={examName} />
+        <MultipleChoiceQuestionCard
+          questions={historyQuestions}
+          examName={examName}
+        />
       ) : examName === mathExam ? (
-        <MultipleChoiceQuestionCard questions={mathQuestions} examName={examName} />
+        <MultipleChoiceQuestionCard
+          questions={mathQuestions}
+          examName={examName}
+        />
       ) : examName === scienceExam ? (
-        <MultipleChoiceQuestionCard questions={scienceQuestions} examName={examName} />
+        <MultipleChoiceQuestionCard
+          questions={scienceQuestions}
+          examName={examName}
+        />
       ) : examName === urduExam ? (
-        <MultipleChoiceQuestionCard questions={urduQuestions} examName={examName} />
+        <MultipleChoiceQuestionCard
+          questions={urduQuestions}
+          examName={examName}
+        />
       ) : null}
     </div>
   );

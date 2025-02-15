@@ -4,7 +4,7 @@ import { useUser } from "@/hooks/mainPageHooks";
 import React from "react";
 
 const Results: React.FC = () => {
-  const { user, subjects, loading, totalMarks } = useUser();
+  const { user, subjects, loading, totalMarks, maxMarks } = useUser();
   if (loading) {
     return <LoadingSpinner />;
   }
@@ -20,6 +20,9 @@ const Results: React.FC = () => {
             <thead>
               <tr className="bg-green-500 text-white">
                 <th className="py-2 px-4 border border-gray-300">Subject</th>
+                <th className="py-2 px-4 border border-gray-300">
+                  Maximum Marks
+                </th>
                 <th className="py-2 px-4 border border-gray-300">
                   Obtained Marks
                 </th>
@@ -44,6 +47,9 @@ const Results: React.FC = () => {
                         )}
                       </td>
                       <td className="py-2 px-4 border border-gray-300">
+                        {user.marks[subject].maxMarks}
+                      </td>
+                      <td className="py-2 px-4 border border-gray-300">
                         {user.marks[subject].marks}
                       </td>
                     </tr>
@@ -52,6 +58,9 @@ const Results: React.FC = () => {
               <tr>
                 <td className="py-2 px-4 border border-gray-300 bg-gray-400">
                   <b>Total</b>
+                </td>
+                <td className="py-2 px-4 border border-gray-300 bg-gray-400">
+                  <b>{maxMarks}</b>
                 </td>
                 <td className="py-2 px-4 border border-gray-300 bg-gray-400">
                   <b>{totalMarks}</b>

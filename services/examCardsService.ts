@@ -20,7 +20,7 @@ export const showExamCard = (
   if (
     Date.now() >= startDate * 1000 &&
     Date.now() <= endDate * 1000 &&
-    user?.marks?.[label].status === 0
+    user?.marks?.[label]?.status === 0
   ) {
     return true;
   } else {
