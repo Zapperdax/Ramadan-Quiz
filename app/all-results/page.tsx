@@ -13,7 +13,7 @@ const AllResults: React.FC = () => {
   return (
     <div className="min-h-screen bg-gradient-to-r from-green-400 to-emerald-500 text-white flex flex-col items-center justify-center">
       <div className="flex flex-col items-center justify-center md:w-full mb-6 mt-4">
-        {Date.now() / 1000 < resultTime ? (
+        {Date.now() / 1000 > resultTime ? (
           <>
             <h1 className="text-4xl font-bold mb-8">Result of All Students</h1>
             <div className="bg-white rounded-lg shadow-lg p-6 text-black md:w-full max-w-6xl">
