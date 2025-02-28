@@ -1,11 +1,5 @@
 export const ExamNames = [
   {
-    label: "Practice Exam",
-    description: "This will teach you how to perform your exam",
-    startDate: 1739625609,
-    endDate: 1739735609,
-  },
-  {
     label: "English Mastery Exam",
     description:
       "Challenge your language skills and uncover your mastery of English communication.",
@@ -56,7 +50,6 @@ export const ExamNames = [
   },
 ];
 
-export const practiceExam = "practice-exam";
 export const englishExam = "english-mastery-exam";
 export const computerExam = "computer-science-innovators-exam";
 export const geographyExam = "geography-adventurer-test";

@@ -1,6 +1,5 @@
 import mongoose, { Schema } from "mongoose";
 import {
-  practiceExam,
   englishExam,
   computerExam,
   geographyExam,
@@ -18,7 +17,6 @@ const UserSchema = new Schema({
   marks: {
     type: Object,
     default: () => ({
-      [practiceExam]: { marks: 0, status: 0, maxMarks: 10 },
       [englishExam]: { marks: 0, status: 0, maxMarks: 10 },
       [computerExam]: { marks: 0, status: 0, maxMarks: 10 },
       [geographyExam]: { marks: 0, status: 0, maxMarks: 10 },

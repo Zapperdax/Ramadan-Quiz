@@ -8,9 +8,7 @@ import historyQuestions from "@/questions/historyQuestions";
 import mathQuestions from "@/questions/mathQuestions";
 import scienceQuestions from "@/questions/scienceQuestion";
 import urduQuestions from "@/questions/urduQuestions";
-import practiceQuestions from "@/questions/practiceQuestions";
 import {
-  practiceExam,
   englishExam,
   computerExam,
   geographyExam,
@@ -27,12 +25,7 @@ type examQuestionProps = {
 const ExamQuestion: React.FC<examQuestionProps> = ({ examName }) => {
   return (
     <div className="flex flex-col justify-center items-center mx-4">
-      {examName === practiceExam ? (
-        <MultipleChoiceQuestionCard
-          questions={practiceQuestions}
-          examName={examName}
-        />
-      ) : examName === englishExam ? (
+      {examName === englishExam ? (
         <MultipleChoiceQuestionCard
           questions={englishQuestions}
           examName={examName}
