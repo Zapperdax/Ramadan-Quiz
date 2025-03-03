@@ -80,7 +80,7 @@ const AllResults: React.FC = () => {
           </>
         ) : (
           <h1 className="text-4xl font-bold mb-8">
-            Results will be announced on {epochToDate(resultTime)}
+            Final Result will be announced on {epochToDate(resultTime)}
           </h1>
         )}
       </div>

@@ -10,6 +10,7 @@ export const useUser = () => {
   const [subjects, setSubjects] = useState<string[]>([]);
   const [totalMarks, setTotalMarks] = useState<number>(0);
   const [maxMarks, setMaxMarks] = useState<number>(0);
+  const [showResult, setShowResult] = useState<boolean>(false);
   const router = useRouter();
 
   useEffect(() => {
@@ -53,6 +54,7 @@ export const useUser = () => {
 
     if (session) {
       fetchUser();
+      setShowResult(isNight());
     }
   }, [session]);
 
@@ -77,5 +79,10 @@ export const useUser = () => {
     });
     setMaxMarks(total);
   };
-  return { user, session, loading, subjects, totalMarks, maxMarks };
+
+  const isNight = () => {
+    const date = new Date();
+    return date.getHours() >= 19 && date.getHours() <= 23;
+  };
+  return { user, session, loading, subjects, totalMarks, maxMarks, showResult };
 };
