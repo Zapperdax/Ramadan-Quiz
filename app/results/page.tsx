@@ -1,18 +1,19 @@
 "use client";
 import LoadingSpinner from "@/components/LoadingSpinner";
 import { useUser } from "@/hooks/mainPageHooks";
+import { resultTime } from "@/questions/ExamNames";
+import { epochToDate } from "@/services/examCardsService";
 import React from "react";
 
 const Results: React.FC = () => {
-  const { user, subjects, loading, totalMarks, maxMarks, showResult } =
-    useUser();
+  const { user, subjects, loading, totalMarks, maxMarks } = useUser();
   if (loading) {
     return <LoadingSpinner />;
   }
   return (
     <div className="min-h-screen bg-gradient-to-r from-green-400 to-emerald-500 text-white flex flex-col items-center justify-center">
       <div className="flex flex-col items-center justify-center md:w-full mb-6 mt-4">
-        {showResult ? (
+        {Date.now() / 1000 > resultTime ? (
           <>
             <h1 className="text-4xl font-bold mb-8">Results Page</h1>
             <div className="bg-white rounded-lg shadow-lg p-6 text-black md:w-full max-w-3xl">
@@ -78,7 +79,7 @@ const Results: React.FC = () => {
         ) : (
           <>
             <h1 className="text-4xl font-bold mb-8">
-              Results will be shown between 7 PM to 11 PM
+              Result will be announced on {epochToDate(resultTime)}
             </h1>
           </>
         )}
