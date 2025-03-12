@@ -29,12 +29,22 @@ const handleUpdateMarks = async (
       body: JSON.stringify({ userId, subject, marks, status }),
     });
     if (!response.ok) {
-      const errorData = await response.json();
-      console.error("Error updating user:", errorData.error);
-      return;
+      let errorMessage = "Failed to update marks";
+      try {
+        const errorData = await response.json();
+        errorMessage = errorData?.error || errorMessage;
+      } catch (err) {
+        console.error("Failed to parse error response", err);
+      }
+      console.error("Error updating user:", errorMessage);
+      throw new Error(errorMessage);
     }
+    return response.headers.get("content-length") === "0"
+      ? {}
+      : await response.json();
   } catch (error) {
     console.error("Error calling API", error);
+    throw error; // Re-throw so the caller can handle it
   }
 };
 
@@ -56,10 +66,17 @@ export const handleSubmit = async (
   questions.forEach((question: { correctOption: string }, i: number) => {
     if (question.correctOption === selectedOptions[i]) marks++;
   });
-  toast.success(`You have successfully submitted your exam!`, {
-    position: "top-right",
-    autoClose: 10000,
-  });
-  await handleUpdateMarks(userId, examName, marks, 1);
-  router.push("/");
+  try {
+    await handleUpdateMarks(userId, examName, marks, 1);
+    toast.success(`You have successfully submitted your exam!`, {
+      position: "top-right",
+      autoClose: 10000,
+    });
+    router.push("/");
+  } catch (error) {
+    toast.error("Error submitting exam!", {
+      position: "top-right",
+      autoClose: 3000,
+    });
+  }
 };
