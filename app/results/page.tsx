@@ -12,7 +12,7 @@ const Results: React.FC = () => {
   }
   return (
     <div className="min-h-screen bg-gradient-to-r from-green-400 to-emerald-500 text-white flex flex-col items-center justify-center">
-      <div className="flex flex-col items-center justify-center md:w-full mb-6 mt-4">
+      <div className="flex flex-col items-center justify-center md:w-full mb-6 mt-4 mx-4">
         {Date.now() / 1000 > resultTime ? (
           <>
             <h1 className="text-4xl font-bold mb-8">Results Page</h1>

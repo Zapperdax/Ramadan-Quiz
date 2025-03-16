@@ -29,5 +29,11 @@ export const useAllUsers = () => {
 
     fetchAllUsers();
   }, [session]);
-  return { allUsers, loading };
+  function calculatePostfix(num: number) {
+    if (num === 1) return "st";
+    if (num === 2) return "nd";
+    if (num === 3) return "rd";
+    return "th";
+  }
+  return { allUsers, loading, calculatePostfix };
 };
